@@ -11,9 +11,19 @@ async function main() {
   // what happens when we deploy to our hardhat network (locally) ?
 
   if (network.config.chainId === 11155111 && process.env.ETHER_SCAN_API_KEY) {
+    console.log("Waiting for block txes...")
     await simpleStorage.deploymentTransaction()?.wait(6)
     await verify(simpleStorageAddress)
   }
+
+  const currentValue = await simpleStorage.retrieve()
+  console.log(`currentValue is: ${currentValue}`)
+
+  // Update the current Value
+  const txResponse = await simpleStorage.store("7")
+  await txResponse.wait(1)
+  const updatedValue = await simpleStorage.retrieve()
+  console.log(`Updated Value is: ${updatedValue}`)
 
 }
 
