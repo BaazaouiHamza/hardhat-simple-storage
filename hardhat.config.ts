@@ -3,6 +3,7 @@ import "@nomicfoundation/hardhat-toolbox";
 import "dotenv/config"
 import "./tasks/block-number"
 import "hardhat-gas-reporter"
+import "solidity-coverage"
 
 const SEPOLIA_RPC_URL = process.env.SEPOLOIA_RPC_URL || ""
 const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
